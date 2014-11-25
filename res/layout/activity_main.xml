@@ -9,8 +9,29 @@
     tools:context="com.github.vmarquet.bartendr.MainActivity" >
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/hello_world"
+        android:textSize="32sp" />
+
+    <Button
+        android:id="@+id/order_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/order_button" />
+
+    <Button
+        android:id="@+id/pay_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/order_button"
+        android:layout_alignRight="@+id/order_button"
+        android:layout_below="@+id/order_button"
+        android:text="@string/pay_button" />
 
 </RelativeLayout>
