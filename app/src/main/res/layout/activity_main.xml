@@ -32,6 +32,7 @@
         android:layout_alignLeft="@+id/order_button"
         android:layout_alignRight="@+id/order_button"
         android:layout_below="@+id/order_button"
-        android:text="@string/pay_button" />
+        android:text="@string/pay_button"
+        android:onClick="pay" />
 
 </RelativeLayout>
