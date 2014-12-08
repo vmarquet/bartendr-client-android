@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/order_button" />
+        android:text="@string/order_button"
+        android:onClick="seeMenu" />
 
     <Button
         android:id="@+id/pay_button"

@@ -1,5 +1,6 @@
 package com.github.vmarquet.bartendr;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -37,6 +38,13 @@ public class MainActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+    // when button "Choisir sa boisson" is clicked, we switch to a new activity to display menu
+    public void seeMenu(View view) {
+        Intent i = new Intent(MainActivity.this, MenuActivity.class);
+        startActivity(i);
+    }
+
+    // we display a message when button "Payer" is clicked
 	public void pay(View view) {
 		Toast.makeText(getApplicationContext(), "Not available yet : (", 3).show();
         new AsyncTaskTest().execute();

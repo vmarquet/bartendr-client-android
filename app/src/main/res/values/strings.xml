@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- main activity -->
     <string name="app_name">BarTendr</string>
     <string name="hello_world">Bienvenue dans BarTendr !</string>
     <string name="action_settings">Settings</string>
     <string name="order_button">Choisir sa boisson</string>
     <string name="pay_button">Payer !</string>
+
+    <!-- menu activity -->
+    <string name="menu">Menu</string>
 
 </resources>
