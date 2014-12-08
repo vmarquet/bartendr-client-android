@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.os.AsyncTask;
+import java.lang.Thread;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -35,7 +37,38 @@ public class MainActivity extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-    public void pay(View view) {
-        Toast.makeText(getApplicationContext(), "Not available yet : (", 3).show();
-    }
+	public void pay(View view) {
+		Toast.makeText(getApplicationContext(), "Not available yet : (", 3).show();
+        new AsyncTaskTest().execute();
+	}
+
+	// AsyncTask test
+	private class AsyncTaskTest extends AsyncTask<Integer, Integer, Long> {
+		@Override
+		protected Long doInBackground(Integer... a) {
+			int count = 3;
+			for (int i = 0; i < count; i++) {
+				publishProgress(i);
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					Thread.interrupted();
+				}
+				// Escape early if cancel() is called
+				if (isCancelled()) break;
+			}
+			return 0L;
+		}
+
+		@Override
+		protected void onProgressUpdate(Integer... i) {
+			Toast.makeText(getApplicationContext(), "test AsyncTask " + Integer.toString(i[0]), 1).show();
+		}
+
+		@Override
+		protected void onPostExecute(Long result) {
+			Toast.makeText(getApplicationContext(), "test AsyncTask finished", 1).show();
+		}
+	}
+	// end AsyncTask test
 }
