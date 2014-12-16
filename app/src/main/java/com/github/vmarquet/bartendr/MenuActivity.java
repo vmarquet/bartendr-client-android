@@ -2,32 +2,47 @@ package com.github.vmarquet.bartendr;
 
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.JsonReader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 
 public class MenuActivity extends Activity {
+    private ArrayList<String> menuCategories = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        ListView lv = (ListView)findViewById(R.id.listViewMenu);
+        // we download the JSON file, and we update the Activity display
+        new DownloadMenuTask().execute("http://v-marquet.bitbucket.org/menu.json");
 
-        final String[] liste = {"Bière", "Cocktail", "Vin"};
+        // we set the ListView
+        ListView lv = (ListView)findViewById(R.id.listViewMenu);
         lv.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
-                return liste.length;
+                return menuCategories.size();
             }
 
             @Override
             public String getItem(int i) {
-                return liste[i];
+                return menuCategories.get(i);
             }
 
             @Override
@@ -51,5 +66,79 @@ public class MenuActivity extends Activity {
                 return view;
             }
         });
+    }
+
+
+    private class DownloadMenuTask extends AsyncTask<String, Void, String> {
+        // we launch the download process of the JSON file
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                downloadMenuJSON(new URL(urls[0]));
+            } catch (IOException ex) {
+                return "Unable to download JSON file or invalid JSON file.";
+            }
+
+            return "JSON file downloaded.";
+        }
+
+        // the function that actually downloads the file
+        private void downloadMenuJSON(URL url) throws IOException {
+            InputStream inputStream = null;
+
+            try {
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.connect();
+                int status = connection.getResponseCode();
+                inputStream = connection.getInputStream();
+
+                // we convert input stream (JSON file) to an array of strings
+                readJSON(inputStream);
+            }
+            finally {
+                if (inputStream != null)
+                    inputStream.close();
+            }
+        }
+
+        // we read the JSON file and convert it to an array of Strings
+        private void readJSON(InputStream inputStream) throws IOException {
+            JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
+            menuCategories.clear();
+            try {
+                // the JSON begins with an array
+                reader.beginArray();
+                while (reader.hasNext()) {
+                    // we analyse the objects in the array
+                    reader.beginObject();
+                    while (reader.hasNext()) {
+                        String name = reader.nextName();
+                        if (name.equals("name"))
+                            menuCategories.add(reader.nextString());
+                        else
+                            reader.skipValue();
+                    }
+                    reader.endObject();
+                }
+                reader.endArray();
+            } finally {
+                reader.close();
+            }
+            return;
+        }
+
+        // once we've downloaded the JSON file, we update the activity display
+        @Override
+        protected void onPostExecute(String message) {
+            // we update the ListView display
+            ListView lv = (ListView)findViewById(R.id.listViewMenu);
+            BaseAdapter adapter = (BaseAdapter) lv.getAdapter();
+            adapter.notifyDataSetChanged();
+
+            // debug message
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            return;
+        }
     }
 }

@@ -46,7 +46,7 @@ public class MainActivity extends ActionBarActivity {
 
     // we display a message when button "Payer" is clicked
 	public void pay(View view) {
-		Toast.makeText(getApplicationContext(), "Not available yet : (", 3).show();
+		Toast.makeText(getApplicationContext(), "Not available yet : (", Toast.LENGTH_LONG).show();
         new AsyncTaskTest().execute();
 	}
 
@@ -70,12 +70,12 @@ public class MainActivity extends ActionBarActivity {
 
 		@Override
 		protected void onProgressUpdate(Integer... i) {
-			Toast.makeText(getApplicationContext(), "test AsyncTask " + Integer.toString(i[0]), 1).show();
+			Toast.makeText(getApplicationContext(), "test AsyncTask " + Integer.toString(i[0]), Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		protected void onPostExecute(Long result) {
-			Toast.makeText(getApplicationContext(), "test AsyncTask finished", 1).show();
+			Toast.makeText(getApplicationContext(), "test AsyncTask finished", Toast.LENGTH_SHORT).show();
 		}
 	}
 	// end AsyncTask test

@@ -4,7 +4,8 @@ Design patterns INF4042
 - [X] AsyncTask
 - [X] Activity
 - [ ] ActionBar
-- [ ] ListView
+- [X] ListView
+- [X] JSON
 - [ ] Fragment
 - [ ] IntentService
 - [ ] BroadcastReciever
