@@ -11,4 +11,7 @@
     <!-- menu activity -->
     <string name="menu">Menu</string>
 
+    <!-- category activity -->
+    <string name="category">Boissons</string> <!-- TODO: mettre le nom de la catégorie à la place -->
+
 </resources>
