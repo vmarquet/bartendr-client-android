@@ -24,6 +24,20 @@ public class Order {
         return INSTANCE;
     }
 
+    // getters:
+
+    // to get the list size
+    public int getNumberOfArticles() {
+        return this.order.size();
+    }
+
+    // to get the article at a given position
+    public Article getArticleAt(int i) {
+        return this.order.get(i);
+    }
+
+    // setters:
+
     // to add an article to the order list
     public void add(Article article) {
         this.order.add(article);

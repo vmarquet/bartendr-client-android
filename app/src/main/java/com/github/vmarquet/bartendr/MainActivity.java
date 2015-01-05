@@ -44,39 +44,10 @@ public class MainActivity extends ActionBarActivity {
         startActivity(i);
     }
 
-    // we display a message when button "Payer" is clicked
-	public void pay(View view) {
-		Toast.makeText(getApplicationContext(), "Not available yet : (", Toast.LENGTH_LONG).show();
-        new AsyncTaskTest().execute();
+    // we switch to OrderActivity when button "Commander !" is clicked
+	public void order(View view) {
+        Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+        startActivity(intent);
 	}
 
-	// AsyncTask test
-	private class AsyncTaskTest extends AsyncTask<Integer, Integer, Long> {
-		@Override
-		protected Long doInBackground(Integer... a) {
-			int count = 3;
-			for (int i = 0; i < count; i++) {
-				publishProgress(i);
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					Thread.interrupted();
-				}
-				// Escape early if cancel() is called
-				if (isCancelled()) break;
-			}
-			return 0L;
-		}
-
-		@Override
-		protected void onProgressUpdate(Integer... i) {
-			Toast.makeText(getApplicationContext(), "test AsyncTask " + Integer.toString(i[0]), Toast.LENGTH_SHORT).show();
-		}
-
-		@Override
-		protected void onPostExecute(Long result) {
-			Toast.makeText(getApplicationContext(), "test AsyncTask finished", Toast.LENGTH_SHORT).show();
-		}
-	}
-	// end AsyncTask test
 }

@@ -5,42 +5,32 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textViewArticleName"
+        android:id="@+id/textViewOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
+        android:text="@string/order"
         android:textSize="32sp"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" />
 
-    <TextView
-        android:id="@+id/textViewArticleDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:textSize="24sp"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" />
-
-    <TextView
-        android:id="@+id/textViewArticlePrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:textSize="24sp"
+    <ListView
+        android:id="@+id/listViewOrder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" />
 
     <Button
-        android:id="@+id/order_article_button"
+        android:id="@+id/pay_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/order_article_button"
-        android:onClick="orderArticle" />
+        android:text="@string/pay_button"
+        android:onClick="pay" />
 
 </LinearLayout>

@@ -24,8 +24,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class CategoryActivity extends Activity {
-    // TODO: pas propre, il faudrait peut-être plutôt créer une classe "Article"
-    // et utiliser juste une ArrayList<Article>
+    // TODO: pas propre, il faudrait peut-être plutôt utiliser une ArrayList<Article>
     private ArrayList<String> categoryArticles = new ArrayList<String>();  // article name
     private ArrayList<Integer> categoryArticlesID = new ArrayList<Integer>();  // article ID
 

@@ -19,25 +19,25 @@
         android:layout_marginTop="20dp" />
 
     <Button
-        android:id="@+id/order_button"
+        android:id="@+id/menu_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/order_button"
+        android:text="@string/menu_button"
         android:onClick="seeMenu" />
 
     <Button
-        android:id="@+id/pay_button"
+        android:id="@+id/order_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/order_button"
-        android:layout_alignStart="@+id/order_button"
-        android:layout_alignRight="@+id/order_button"
-        android:layout_alignEnd="@+id/order_button"
-        android:layout_below="@+id/order_button"
-        android:text="@string/pay_button"
-        android:onClick="pay" />
+        android:layout_alignLeft="@+id/menu_button"
+        android:layout_alignStart="@+id/menu_button"
+        android:layout_alignRight="@+id/menu_button"
+        android:layout_alignEnd="@+id/menu_button"
+        android:layout_below="@+id/menu_button"
+        android:text="@string/order_button"
+        android:onClick="order" />
     <!-- Nota bene: alignLeft and alignRight are the older equivalents of alignStart and alignEnd -->
     <!-- they are left here only for compatibility with older devices -->
 

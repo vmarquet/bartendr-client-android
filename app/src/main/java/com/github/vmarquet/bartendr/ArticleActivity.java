@@ -4,8 +4,7 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.JsonReader;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +35,16 @@ public class ArticleActivity extends Activity {
         this.article = new Article(articleID);
     }
 
+    // when the "Ajouter à la commande" button is clicked, we add it to the Order class
+    public void orderArticle(View view) {
+        if (this.article == null) {
+            Toast.makeText(getApplicationContext(), "Attendez que les données soient chargées SVP.", Toast.LENGTH_LONG).show();
+            return;
+        }
+        Order order = Order.getInstance();
+        order.add(this.article);
+        Toast.makeText(getApplicationContext(), "Article ajouté à la commande.", Toast.LENGTH_LONG).show();
+    }
 
     private class DownloadMenuTask extends AsyncTask<String, Void, String> {
         // we launch the download process of the JSON file
