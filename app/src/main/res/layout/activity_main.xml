@@ -15,7 +15,8 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="@string/hello_world"
-        android:textSize="32sp" />
+        android:textSize="32sp"
+        android:layout_marginTop="20dp" />
 
     <Button
         android:id="@+id/order_button"
@@ -31,9 +32,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/order_button"
+        android:layout_alignStart="@+id/order_button"
         android:layout_alignRight="@+id/order_button"
+        android:layout_alignEnd="@+id/order_button"
         android:layout_below="@+id/order_button"
         android:text="@string/pay_button"
         android:onClick="pay" />
+    <!-- Nota bene: alignLeft and alignRight are the older equivalents of alignStart and alignEnd -->
+    <!-- they are left here only for compatibility with older devices -->
 
 </RelativeLayout>
