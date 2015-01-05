@@ -4,9 +4,9 @@
     tools:context="com.github.vmarquet.bartendr.MainActivity" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_order"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
+        android:title="@string/action_order"
+        app:showAsAction="always"/>
 
 </menu>
