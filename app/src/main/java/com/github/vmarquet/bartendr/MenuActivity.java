@@ -1,7 +1,6 @@
 package com.github.vmarquet.bartendr;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MenuActivity extends Activity {
+public class MenuActivity extends CustomActionBarActivity {
     private ArrayList<String> menuCategories = new ArrayList<String>();
 
     @Override

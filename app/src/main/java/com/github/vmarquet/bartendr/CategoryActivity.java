@@ -1,7 +1,5 @@
 package com.github.vmarquet.bartendr;
 
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -23,7 +21,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class CategoryActivity extends Activity {
+
+public class CategoryActivity extends CustomActionBarActivity {
     // TODO: pas propre, il faudrait peut-être plutôt utiliser une ArrayList<Article>
     private ArrayList<String> categoryArticles = new ArrayList<String>();  // article name
     private ArrayList<Integer> categoryArticlesID = new ArrayList<Integer>();  // article ID

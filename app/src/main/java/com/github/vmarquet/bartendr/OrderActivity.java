@@ -1,6 +1,5 @@
 package com.github.vmarquet.bartendr;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class OrderActivity extends Activity {
+public class OrderActivity extends CustomActionBarActivity {
     private Order order;
 
     @Override

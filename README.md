@@ -15,7 +15,7 @@ Projet Android
 * ✔ Toast
 * ✔ AsyncTask
 * ✔ Activity
-* ✘ ActionBar
+* ✔ ActionBar
 * ✔ ListView
 * ✔ JSON (récupération et parsing)
 * ✘ Fragment

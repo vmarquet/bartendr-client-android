@@ -1,6 +1,5 @@
 package com.github.vmarquet.bartendr;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.JsonReader;
@@ -15,7 +14,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class ArticleActivity extends Activity {
+public class ArticleActivity extends CustomActionBarActivity {
     // the article attributes
     private Article article;
 
