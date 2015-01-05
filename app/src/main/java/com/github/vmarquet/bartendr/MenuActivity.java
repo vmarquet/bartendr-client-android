@@ -78,7 +78,9 @@ public class MenuActivity extends Activity {
                 // we use a Bundle to give a parameter to the CategoryActivity
                 // cf http://stackoverflow.com/questions/3913592
                 Bundle bundle = new Bundle();
-                bundle.putInt("categoryID", position);  // TODO: not safe if categories doesn't start at 0, etc...
+                bundle.putInt("categoryID", position);  // not safe if categories doesn't start at 0, etc...
+                bundle.putString("categoryName", menuCategories.get(position));  // not safe, same as above
+                // TODO: use the real category ID instead of "position" which is the index in the menuCategories ArrayList
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

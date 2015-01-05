@@ -36,6 +36,9 @@ public class CategoryActivity extends Activity {
         // we get the category ID
         Bundle bundle = getIntent().getExtras();
         int categoryID = bundle.getInt("categoryID");
+        // we get the category name
+        TextView textView = (TextView)findViewById(R.id.textViewCategory);
+        textView.setText(bundle.getString("categoryName"));
 
         // we download the JSON file, and we update the Activity display
         new DownloadMenuTask().execute("http://v-marquet.bitbucket.org/bartendr/categories/"

@@ -11,9 +11,6 @@
     <!-- menu activity -->
     <string name="menu">Menu</string>
 
-    <!-- category activity -->
-    <string name="category">Boissons</string> <!-- TODO: mettre le nom de la catégorie à la place -->
-
     <!-- article activity -->
     <string name="order_article_button">Ajouter à la commande</string>
 
