@@ -36,11 +36,7 @@ public class Article {
     }
 
     // setters
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
+    public void setArticleName(String name) {
         this.name = name;
     }
 

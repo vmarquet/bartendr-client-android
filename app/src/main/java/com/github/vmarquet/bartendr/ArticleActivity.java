@@ -18,9 +18,7 @@ import java.net.URL;
 
 public class ArticleActivity extends Activity {
     // the article attributes
-    private String articleName;
-    private String articleDescription;
-    private double articlePrice;
+    private Article article;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +32,8 @@ public class ArticleActivity extends Activity {
         // we download the JSON file, and we update the Activity display
         new DownloadMenuTask().execute("http://v-marquet.bitbucket.org/bartendr/articles/"
                 + Integer.toString(articleID) + ".json");
+
+        this.article = new Article(articleID);
     }
 
 
@@ -79,11 +79,11 @@ public class ArticleActivity extends Activity {
                 while (reader.hasNext()) {
                     String name = reader.nextName();
                     if (name.equals("name"))
-                        articleName = reader.nextString();
+                        article.setArticleName(reader.nextString());
                     else if (name.equals("description"))
-                        articleDescription = reader.nextString();
+                        article.setDescription(reader.nextString());
                     else if (name.equals("price"))
-                        articlePrice = reader.nextDouble();
+                        article.setPrice(reader.nextDouble());
                     else
                         reader.skipValue();
                 }
@@ -99,13 +99,13 @@ public class ArticleActivity extends Activity {
         protected void onPostExecute(String message) {
             // we update the ListView display
             TextView textViewArticleName = (TextView)findViewById(R.id.textViewArticleName);
-            textViewArticleName.setText(articleName);
+            textViewArticleName.setText(article.getArticleName());
 
             TextView textViewArticleDescription = (TextView)findViewById(R.id.textViewArticleDescription);
-            textViewArticleDescription.setText(articleDescription);
+            textViewArticleDescription.setText(article.getDescription());
 
             TextView textViewArticlePrice = (TextView)findViewById(R.id.textViewArticlePrice);
-            textViewArticlePrice.setText("Prix: " + Double.toString(articlePrice) + " €");
+            textViewArticlePrice.setText(String.format("Prix: %.2f €", article.getPrice()));
 
             // debug message
             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
