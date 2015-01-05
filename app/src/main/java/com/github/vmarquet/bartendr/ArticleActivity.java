@@ -1,9 +1,12 @@
 package com.github.vmarquet.bartendr;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +34,7 @@ public class ArticleActivity extends CustomActionBarActivity {
         new DownloadMenuTask().execute("http://v-marquet.bitbucket.org/bartendr/articles/"
                 + Integer.toString(articleID) + ".json");
 
+        // we create an Article object to store the article's data
         this.article = new Article(articleID);
     }
 
@@ -54,7 +58,6 @@ public class ArticleActivity extends CustomActionBarActivity {
             } catch (IOException ex) {
                 return "Unable to download JSON file or invalid JSON file.";
             }
-
             return "JSON file downloaded.";
         }
 
@@ -92,6 +95,11 @@ public class ArticleActivity extends CustomActionBarActivity {
                         article.setDescription(reader.nextString());
                     else if (name.equals("price"))
                         article.setPrice(reader.nextDouble());
+                    else if (name.equals("picture")) {
+                        article.setPicture(reader.nextString());
+                        // we launch the download process of the image file
+                        new DownloadImageTask().execute(article.getPicture());
+                    }
                     else
                         reader.skipValue();
                 }
@@ -120,4 +128,43 @@ public class ArticleActivity extends CustomActionBarActivity {
             return;
         }
     }
+
+
+    private class DownloadImageTask extends AsyncTask<String, Void, String> {
+        private Bitmap image = null;
+
+        // we launch the download process of the image file
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                downloadImage(new URL(urls[0]));
+            } catch (IOException ex) {
+                return "Unable to download image or invalid image.";
+            }
+            return "Image downloaded.";
+        }
+
+        // the function that actually downloads the image
+        private void downloadImage(URL url) throws IOException {
+            InputStream inputStream = null;
+            try {
+                inputStream = url.openConnection().getInputStream();
+                this.image = BitmapFactory.decodeStream(inputStream);
+            }
+            finally {
+                if (inputStream != null)
+                    inputStream.close();
+            }
+        }
+
+        // once we've downloaded the image, we update the activity display
+        @Override
+        protected void onPostExecute(String message) {
+            ImageView imageView = (ImageView)findViewById(R.id.imageViewArticle);
+            imageView.setImageBitmap(this.image);
+            return;
+        }
+    }
 }
+
+

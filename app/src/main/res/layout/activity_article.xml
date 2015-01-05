@@ -35,11 +35,19 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" />
 
+    <ImageView
+        android:id="@+id/imageViewArticle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center" />
+
     <Button
         android:id="@+id/order_article_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
         android:text="@string/order_article_button"
         android:onClick="orderArticle" />
 

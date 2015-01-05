@@ -6,6 +6,7 @@ public class Article {
     private String name;
     private String description;
     private double price;
+    private String picture;
 
     // constructors
     public Article(int id) {
@@ -35,6 +36,10 @@ public class Article {
         return this.price;
     }
 
+    public String getPicture() {
+        return this.picture;
+    }
+
     // setters
     public void setArticleName(String name) {
         this.name = name;
@@ -46,5 +51,9 @@ public class Article {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }
