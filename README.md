@@ -43,3 +43,6 @@ rails s
 * ✔ l'application marche localement
 * ✔ une base de donnée capable d'être migrate et rollback
 * ✔ le code disponible sur [github](https://github.com/vmarquet/bartendr-server/tree/master/server-ror)
+
+
+![BarTendr logo](https://drive.google.com/uc?export=view&id=0B31-CIvNW1LdeU0xSnBYNEJWeDQ)
