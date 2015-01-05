@@ -58,7 +58,7 @@ public class ArticleActivity extends CustomActionBarActivity {
             } catch (IOException ex) {
                 return "Unable to download JSON file or invalid JSON file.";
             }
-            return "JSON file downloaded.";
+            return null;
         }
 
         // the function that actually downloads the file
@@ -123,8 +123,9 @@ public class ArticleActivity extends CustomActionBarActivity {
             TextView textViewArticlePrice = (TextView)findViewById(R.id.textViewArticlePrice);
             textViewArticlePrice.setText(String.format("Prix: %.2f €", article.getPrice()));
 
-            // debug message
-            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            // possible error message
+            if (message != null)
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
             return;
         }
     }
@@ -141,7 +142,7 @@ public class ArticleActivity extends CustomActionBarActivity {
             } catch (IOException ex) {
                 return "Unable to download image or invalid image.";
             }
-            return "Image downloaded.";
+            return null;
         }
 
         // the function that actually downloads the image
@@ -160,8 +161,13 @@ public class ArticleActivity extends CustomActionBarActivity {
         // once we've downloaded the image, we update the activity display
         @Override
         protected void onPostExecute(String message) {
+            // we display the image
             ImageView imageView = (ImageView)findViewById(R.id.imageViewArticle);
             imageView.setImageBitmap(this.image);
+
+            // possible error message
+            if (message != null)
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
             return;
         }
     }

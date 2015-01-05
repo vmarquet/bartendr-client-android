@@ -98,8 +98,7 @@ public class MenuActivity extends CustomActionBarActivity {
             } catch (IOException ex) {
                 return "Unable to download JSON file or invalid JSON file.";
             }
-
-            return "JSON file downloaded.";
+            return null;
         }
 
         // the function that actually downloads the file
@@ -156,8 +155,9 @@ public class MenuActivity extends CustomActionBarActivity {
             BaseAdapter adapter = (BaseAdapter) lv.getAdapter();
             adapter.notifyDataSetChanged();
 
-            // debug message
-            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            // possible error message
+            if (message != null)
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
             return;
         }
     }
