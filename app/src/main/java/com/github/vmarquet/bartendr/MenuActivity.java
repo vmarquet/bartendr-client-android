@@ -78,14 +78,12 @@ public class MenuActivity extends Activity {
                 // we use a Bundle to give a parameter to the CategoryActivity
                 // cf http://stackoverflow.com/questions/3913592
                 Bundle bundle = new Bundle();
-                bundle.putInt("categoryID", position);  // TODO: not safe if categories doen't start at 0, etc...
+                bundle.putInt("categoryID", position);  // TODO: not safe if categories doesn't start at 0, etc...
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
 
-            public void onNothingSelected(AdapterView parentView) {
-
-            }
+            public void onNothingSelected(AdapterView parentView) {}
         });
 
     }

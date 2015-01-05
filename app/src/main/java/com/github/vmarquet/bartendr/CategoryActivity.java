@@ -2,12 +2,14 @@ package com.github.vmarquet.bartendr;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -22,7 +24,10 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class CategoryActivity extends Activity {
-    private ArrayList<String> categoryArticles = new ArrayList<String>();
+    // TODO: pas propre, il faudrait peut-être plutôt créer une classe "Article"
+    // et utiliser juste une ArrayList<Article>
+    private ArrayList<String> categoryArticles = new ArrayList<String>();  // article name
+    private ArrayList<Integer> categoryArticlesID = new ArrayList<Integer>();  // article ID
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,6 @@ public class CategoryActivity extends Activity {
         // we download the JSON file, and we update the Activity display
         new DownloadMenuTask().execute("http://v-marquet.bitbucket.org/bartendr/categories/"
                                        + Integer.toString(categoryID) + ".json");
-        // TODO: changer 0.json par la catégorie sélectionnée à l'étape précédente
 
         // we set the ListView
         ListView lv = (ListView)findViewById(R.id.listViewCategory);
@@ -71,6 +75,23 @@ public class CategoryActivity extends Activity {
 
                 return view;
             }
+        });
+
+        // when an article is selected, we switch to a new activity
+        // to display this article with more details
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView parentView, View childView, int position, long id)
+            {
+                Intent intent = new Intent(CategoryActivity.this, ArticleActivity.class);
+                // we use a Bundle to give a parameter to the ArticleActivity
+                // cf http://stackoverflow.com/questions/3913592
+                Bundle bundle = new Bundle();
+                bundle.putInt("articleID", categoryArticlesID.get(position));
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+
+            public void onNothingSelected(AdapterView parentView) {}
         });
     }
 
@@ -122,6 +143,8 @@ public class CategoryActivity extends Activity {
                         String name = reader.nextName();
                         if (name.equals("name"))
                             categoryArticles.add(reader.nextString());
+                        else if (name.equals("id"))
+                            categoryArticlesID.add(reader.nextInt());
                         else
                             reader.skipValue();
                     }
